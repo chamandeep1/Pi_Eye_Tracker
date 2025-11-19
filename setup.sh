@@ -30,19 +30,20 @@ sudo apt install python3-opencv libopencv-dev libopenblas0 libopenblas-dev
 cd /home/pi/
 sudo mkdir EyeTracker
 cd EyeTracker
-sudo python3 -m venv eyetracker
+sudo python3.11 -m venv eyetracker
 source eyetracker/bin/activate
 
-#Installing pip3 setup tools
-pip install --upgrade pip setuptools
-echo -e "${colr}pip3 setup tools complete"
+# Give permission to the eye tracker folder for writing
+sudo chown -R pi:pi /home/pi/EyeTracker/eyetracker
 
 #Install Numpy
-pip install "numpy<2"
+pip install numpy
 
 #Linking OpenCV in the base environment ot the virtual environment
-ln -s /usr/lib/python3/dist-packages/cv2.cpython-311-arm-linux-gnueabihf.so \
+ln -sf /usr/lib/python3/dist-packages/cv2.cpython-313-aarch64-linux-gnu.so \
 /home/pi/EyeTracker/eyetracker/lib/python3.13/site-packages/cv2.so
+#Use followign command to test
+#python -c "import cv2; print(cv2.__version__)"
 
 #Download Haar Cascades (eyes + face) for detection in the project folder
 wget https://raw.githubusercontent.com/opencv/opencv/master/data/haarcascades/haarcascade_frontalface_default.xml
