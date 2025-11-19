@@ -46,8 +46,11 @@ ln -sf /usr/lib/python3/dist-packages/cv2.cpython-313-aarch64-linux-gnu.so \
 #python -c "import cv2; print(cv2.__version__)"
 
 #Download Haar Cascades (eyes + face) for detection in the project folder
-wget https://raw.githubusercontent.com/opencv/opencv/master/data/haarcascades/haarcascade_frontalface_default.xml
-wget https://raw.githubusercontent.com/opencv/opencv/master/data/haarcascades/haarcascade_eye.xml
+sudo wget https://raw.githubusercontent.com/opencv/opencv/master/data/haarcascades/haarcascade_frontalface_default.xml
+sudo wget https://raw.githubusercontent.com/opencv/opencv/master/data/haarcascades/haarcascade_eye.xml
+
+#Install, gstreamer app on Pi to access its camera
+sudo apt install gstreamer1.0-tools gstreamer1.0-libav gstreamer1.0-plugins-good gstreamer1.0-plugins-bad
 
 
 
