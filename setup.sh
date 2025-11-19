@@ -23,6 +23,9 @@ echo -e "${colr}apt-get Upgrade complete"
 sudo sed -i "s/^# set linenumbers/set linenumbers/g" /etc/nanorc
 echo "Nano setup to display line number"
 
+#Install opencv in the main pi environment first so it can be installed in virtual environment later
+sudo apt install python3-opencv libopencv-dev
+
 #Create new virtual environment and activate it
 cd /home/pi/
 sudo mkdir EyeTracker
@@ -34,8 +37,10 @@ source eyetracker/bin/activate
 pip install --upgrade pip setuptools wheel
 echo -e "${colr}pip3 setup tools complete"
 
-#Installing OpenCV
-pip install opencv-python
+#Linking OpenCV in the base environment ot the virtual environment
+ln -s /usr/lib/python3/dist-packages/cv2.cpython-311-arm-linux-gnueabihf.so \
+/home/pi/EyeTracker/eyetracker/lib/python3.11/site-packages/cv2.so
+
 
 #Download Haar Cascades (eyes + face) for detection
 mkdir -p ~/cascades
