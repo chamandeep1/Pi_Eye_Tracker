@@ -35,7 +35,15 @@ pip install --upgrade pip setuptools wheel
 echo -e "${colr}pip3 setup tools complete"
 
 #Installing OpenCV
-sudo apt install python3-opencv
+pip install opencv-python
+
+#Download Haar Cascades (eyes + face) for detection
+mkdir -p ~/cascades
+cd ~/cascades
+wget https://raw.githubusercontent.com/opencv/opencv/master/data/haarcascades/haarcascade_frontalface_default.xml
+wget https://raw.githubusercontent.com/opencv/opencv/master/data/haarcascades/haarcascade_eye.xml
+
+
 
 
 
