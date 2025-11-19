@@ -24,7 +24,7 @@ sudo sed -i "s/^# set linenumbers/set linenumbers/g" /etc/nanorc
 echo "Nano setup to display line number"
 
 #Install opencv in the main pi environment first so it can be installed in virtual environment later
-sudo apt install python3-opencv libopencv-dev
+sudo apt install python3-opencv libopencv-dev libopenblas0 libopenblas-dev
 
 #Create new virtual environment and activate it
 cd /home/pi/
@@ -36,6 +36,9 @@ source eyetracker/bin/activate
 #Installing pip3 setup tools
 pip install --upgrade pip setuptools wheel
 echo -e "${colr}pip3 setup tools complete"
+
+#Install Numpy
+pip install "numpy<2"
 
 #Linking OpenCV in the base environment ot the virtual environment
 ln -s /usr/lib/python3/dist-packages/cv2.cpython-311-arm-linux-gnueabihf.so \
